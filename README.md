@@ -1,92 +1,201 @@
 # url_launcher
 
-链接跳转插件
+[![pub package](https://img.shields.io/pub/v/url_launcher.svg)](https://pub.dev/packages/url_launcher)
 
-## Getting started
+A Flutter plugin for launching a URL.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin http://git.eatdesk.net/flutter_plugin/url_launcher.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](http://git.eatdesk.net/flutter_plugin/url_launcher/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+|             | Android | iOS  | Linux | macOS  | Web | Windows     |
+|-------------|---------|------|-------|--------|-----|-------------|
+| **Support** | SDK 16+ | 9.0+ | Any   | 10.11+ | Any | Windows 10+ |
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+To use this plugin, add `url_launcher` as a [dependency in your pubspec.yaml file](https://flutter.dev/platform-plugins/).
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Example
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+``` dart
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+final Uri _url = Uri.parse('https://flutter.dev');
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+void main() => runApp(
+      const MaterialApp(
+        home: Material(
+          child: Center(
+            child: RaisedButton(
+              onPressed: _launchUrl,
+              child: Text('Show Flutter homepage'),
+            ),
+          ),
+        ),
+      ),
+    );
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+void _launchUrl() async {
+  if (!await launchUrl(_url)) throw 'Could not launch $_url';
+}
+```
 
-## License
-For open source projects, say how it is licensed.
+See the example app for more complex examples.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## Configuration
+
+### iOS
+Add any URL schemes passed to `canLaunchUrl` as `LSApplicationQueriesSchemes` entries in your Info.plist file.
+
+Example:
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>https</string>
+  <string>http</string>
+</array>
+```
+
+See [`-[UIApplication canOpenURL:]`](https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl) for more details.
+
+### Android
+
+Starting from API 30 Android requires package visibility configuration in your
+`AndroidManifest.xml` otherwise `canLaunchUrl` will return `false`. A `<queries>`
+element must be added to your manifest as a child of the root element.
+
+The snippet below shows an example for an application that uses `https`, `tel`,
+and `mailto` URLs with `url_launcher`. See
+[the Android documentation](https://developer.android.com/training/package-visibility/use-cases)
+for examples of other queries.
+
+``` xml
+<queries>
+  <!-- If your app opens https URLs -->
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="https" />
+  </intent>
+  <!-- If your app makes calls -->
+  <intent>
+    <action android:name="android.intent.action.DIAL" />
+    <data android:scheme="tel" />
+  </intent>
+  <!-- If your sends SMS messages -->
+  <intent>
+    <action android:name="android.intent.action.SENDTO" />
+    <data android:scheme="smsto" />
+  </intent>
+  <!-- If your app sends emails -->
+  <intent>
+    <action android:name="android.intent.action.SEND" />
+    <data android:mimeType="*/*" />
+  </intent>
+</queries>
+```
+
+## Supported URL schemes
+
+The provided URL is passed directly to the host platform for handling. The
+supported URL schemes therefore depend on the platform and installed apps.
+
+Commonly used schemes include:
+
+| Scheme | Example | Action |
+|:---|:---|:---|
+| `https:<URL>` | `https://flutter.dev` | Open `<URL>` in the default browser |
+| `mailto:<email address>?subject=<subject>&body=<body>` | `mailto:smith@example.org?subject=News&body=New%20plugin` | Create email to `<email address>` in the default email app |
+| `tel:<phone number>` | `tel:+1-555-010-999` | Make a phone call to `<phone number>` using the default phone app |
+| `sms:<phone number>` | `sms:5550101234` | Send an SMS message to `<phone number>` using the default messaging app |
+| `file:<path>` | `file:/home` | Open file or folder using default app association, supported on desktop platforms |
+
+More details can be found here for [iOS](https://developer.apple.com/library/content/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html)
+and [Android](https://developer.android.com/guide/components/intents-common.html)
+
+URL schemes are only supported if there are apps installed on the device that can
+support them. For example, iOS simulators don't have a default email or phone
+apps installed, so can't open `tel:` or `mailto:` links.
+
+### Checking supported schemes
+
+If you need to know at runtime whether a scheme is guaranteed to work before
+using it (for instance, to adjust your UI based on what is available), you can
+check with [`canLaunchUrl`](https://pub.dev/documentation/url_launcher/latest/url_launcher/canLaunchUrl.html).
+
+However, `canLaunchUrl` can return false even if `launchUrl` would work in
+some circumstances (in web applications, on mobile without the necessary
+configuration as described above, etc.), so in cases where you can provide
+fallback behavior it is better to use `launchUrl` directly and handle failure.
+For example, a UI button that would have sent feedback email using a `mailto` URL
+might instead open a web-based feedback form using an `https` URL on failure,
+rather than disabling the button if `canLaunchUrl` returns false for `mailto`.
+
+### Encoding URLs
+
+URLs must be properly encoded, especially when including spaces or other special
+characters. In general this is handled automatically by the
+[`Uri` class](https://api.dart.dev/dart-core/Uri-class.html).
+
+**However**, for any scheme other than `http` or `https`, you should use the
+`query` parameter and the `encodeQueryParameters` function shown below rather
+than `Uri`'s `queryParameters` constructor argument for any query parameters,
+due to [a bug](https://github.com/dart-lang/sdk/issues/43838) in the way `Uri`
+encodes query parameters. Using `queryParameters` will result in spaces being
+converted to `+` in many cases.
+
+```dart
+String? encodeQueryParameters(Map<String, String> params) {
+  return params.entries
+      .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+      .join('&');
+}
+
+final Uri emailLaunchUri = Uri(
+  scheme: 'mailto',
+  path: 'smith@example.com',
+  query: encodeQueryParameters(<String, String>{
+    'subject': 'Example Subject & Symbols are allowed!'
+  }),
+);
+
+launchUrl(emailLaunchUri);
+```
+
+### URLs not handled by `Uri`
+
+In rare cases, you may need to launch a URL that the host system considers
+valid, but cannot be expressed by `Uri`. For those cases, alternate APIs using
+strings are available by importing `url_launcher_string.dart`.
+
+Using these APIs in any other cases is **strongly discouraged**, as providing
+invalid URL strings was a very common source of errors with this plugin's
+original APIs.
+
+### File scheme handling
+
+`file:` scheme can be used on desktop platforms: Windows, macOS, and Linux.
+
+We recommend checking first whether the directory or file exists before calling `launchUrl`.
+
+Example:
+```dart
+var filePath = '/path/to/file';
+final Uri uri = Uri.file(filePath);
+
+if (await File(uri.toFilePath()).exists()) {
+  if (!await launchUrl(uri)) {
+    throw 'Could not launch $uri';
+  }
+}
+```
+
+#### macOS file access configuration
+
+If you need to access files outside of your application's sandbox, you will need to have the necessary
+[entitlements](https://docs.flutter.dev/desktop#entitlements-and-the-app-sandbox).
+
+## Browser vs in-app Handling
+
+On some platforms, web URLs can be launched either in an in-app web view, or
+in the default browser. The default behavior depends on the platform (see
+[`launchUrl`](https://pub.dev/documentation/url_launcher/latest/url_launcher/launchUrl.html)
+for details), but a specific mode can be used on supported platforms by
+passing a `LaunchMode`.
