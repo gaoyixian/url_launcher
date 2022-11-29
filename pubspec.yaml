@@ -30,7 +30,7 @@ dependencies:
     sdk: flutter
   url_launcher_android:
    git:
-    url: http://git.1desks.com/flutter_plugin/url_launcher_android.git
+    url: http://git.eatdesk.net/flutter_plugin/url_launcher_android.git
     ref: ddcdde5a27fa0cf502c7b1070cf87e501d39b4b7
 
   url_launcher_ios: ^6.0.13
