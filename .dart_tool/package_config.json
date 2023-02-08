@@ -345,7 +345,7 @@
     },
     {
       "name": "url_launcher_android",
-      "rootUri": "file:///Users/wuwenwei/.pub-cache/git/url_launcher_android-a350e6d6379c910ccad2afdc66e33782fc052220/",
+      "rootUri": "file:///Users/wuwenwei/.pub-cache/git/url_launcher_android-fd60c15415ba97504af54f0124ad5687a2d2ed5a/",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -428,7 +428,7 @@
       "languageVersion": "2.14"
     }
   ],
-  "generated": "2023-02-08T09:02:24.979811Z",
+  "generated": "2023-02-08T09:14:50.232862Z",
   "generator": "pub",
   "generatorVersion": "2.19.1"
 }

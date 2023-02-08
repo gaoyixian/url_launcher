@@ -375,8 +375,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: a350e6d6379c910ccad2afdc66e33782fc052220
-      resolved-ref: a350e6d6379c910ccad2afdc66e33782fc052220
+      ref: fd60c15415ba97504af54f0124ad5687a2d2ed5a
+      resolved-ref: fd60c15415ba97504af54f0124ad5687a2d2ed5a
       url: "http://git.eatdesk.net/flutter_plugin/url_launcher_android.git"
     source: git
     version: "6.0.16"
