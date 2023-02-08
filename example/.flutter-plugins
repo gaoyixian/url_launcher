@@ -1,0 +1,9 @@
+# This is a generated file; do not edit or check into version control.
+integration_test=/Users/wuwenwei/development/flutter/packages/integration_test/
+url_launcher=/Users/wuwenwei/url_launcher/
+url_launcher_android=/Users/wuwenwei/.pub-cache/git/url_launcher_android-a350e6d6379c910ccad2afdc66e33782fc052220/
+url_launcher_ios=/Users/wuwenwei/.pub-cache/hosted/pub.flutter-io.cn/url_launcher_ios-6.1.0/
+url_launcher_linux=/Users/wuwenwei/.pub-cache/hosted/pub.flutter-io.cn/url_launcher_linux-3.0.2/
+url_launcher_macos=/Users/wuwenwei/.pub-cache/hosted/pub.flutter-io.cn/url_launcher_macos-3.0.2/
+url_launcher_web=/Users/wuwenwei/.pub-cache/hosted/pub.flutter-io.cn/url_launcher_web-2.0.14/
+url_launcher_windows=/Users/wuwenwei/.pub-cache/hosted/pub.flutter-io.cn/url_launcher_windows-3.0.3/

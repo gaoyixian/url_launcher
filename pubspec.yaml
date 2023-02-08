@@ -1,6 +1,7 @@
 name: url_launcher
 description: Flutter plugin for launching a URL. Supports
   web, phone, SMS, and email schemes.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 repository: https://github.com/flutter/plugins/tree/main/packages/url_launcher/url_launcher
 issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+url_launcher%22
 version: 6.1.0
@@ -31,7 +32,7 @@ dependencies:
   url_launcher_android:
    git:
     url: http://git.eatdesk.net/flutter_plugin/url_launcher_android.git
-    ref: ddcdde5a27fa0cf502c7b1070cf87e501d39b4b7
+    ref: a350e6d6379c910ccad2afdc66e33782fc052220
 
   url_launcher_ios: ^6.0.13
   # Allow either the pure-native or Dart/native hybrid versions of the desktop
