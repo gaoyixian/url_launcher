@@ -32,7 +32,7 @@ dependencies:
   url_launcher_android:
    git:
     url: http://git.eatdesk.net/flutter_plugin/url_launcher_android.git
-    ref: 299579c8fc10a8316bea9a783590acfe6fd00f23
+    ref: e963e9516b9f2d41a3803bb567f33d6b3edf95a1
 
   url_launcher_ios: ^6.0.13
   # Allow either the pure-native or Dart/native hybrid versions of the desktop
