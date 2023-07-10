@@ -31,7 +31,8 @@ dependencies:
     sdk: flutter
   url_launcher_android:
    git:
-    url: http://git.eatdesk.net/flutter_plugin/url_launcher_android.git
+    # url: http://git.eatdesk.net/flutter_plugin/url_launcher_android.git
+    url: https://github.com/gaoyixian/url_launcher_android.git
     ref: e963e9516b9f2d41a3803bb567f33d6b3edf95a1
 
   url_launcher_ios: ^6.0.13
